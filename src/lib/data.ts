@@ -49,7 +49,7 @@ export const travelMarkers: TravelMarker[] = [
         "content": [
             {
                 type: "text",
-                text: "导游豆豆带我们游东京浅草寺、请吃了好吃的牛排"
+                text: "豆豆带我们游东京浅草寺、请吃了好吃的牛排"
             },
             {
                 type: "image",
@@ -220,7 +220,6 @@ export const travelMarkers: TravelMarker[] = [
             {
                 type: "image",
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E6%9D%AD%E5%B7%9E/%E6%9D%AD%E5%B7%9E%E6%A1%90%E5%BA%90%E9%A9%AC%E5%B2%AD%E5%8F%A4%E9%81%932.jpg",
-                caption: "这张有点凶"
             }
         ]
     },

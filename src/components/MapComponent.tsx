@@ -90,7 +90,7 @@ export default function MapComponent(
                             viewMode: '2D',
                             center: [118.833954, 32.108711],
                             zooms: [3.5, 15],
-                            zoom: 5.5,
+                            zoom: 3.5,
                             features: ["bg", "point", "building"],
                             layers: [
                                 chinaDis,
