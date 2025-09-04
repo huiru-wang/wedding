@@ -88,7 +88,7 @@ export default function MapComponent(
                         // @ts-expect-error: AMap.DistrictLayer.Country is not recognized by TypeScript
                         const map = new AMap.Map(mapRef.current, {
                             viewMode: '2D',
-                            center: [124.70196, 34.563479],
+                            center: [118.833954, 32.108711],
                             zooms: [3.5, 15],
                             zoom: 5.5,
                             features: ["bg", "point", "building"],
