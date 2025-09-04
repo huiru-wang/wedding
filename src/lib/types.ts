@@ -14,5 +14,5 @@ export type TravelMarker = {
     iconImg: string;
     logFile?: string;
     travelLog?: ReactElement<unknown, string | JSXElementConstructor<any>>;
-    marker?: TravelMarkerContentBlock[];
+    content?: TravelMarkerContentBlock[];
 }
