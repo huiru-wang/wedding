@@ -9,12 +9,6 @@ export function TravelContainer({ travelMarkers }: { travelMarkers: TravelMarker
 
     const [selectedMarker, setSelectedMarker] = useState<TravelMarker | null>(null);
 
-    const scrollToTop = () => {
-        if (typeof window !== "undefined") {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-    };
-
     return (
         <section className="h-screen w-full snap-start flex flex-col bg-background text-foreground pt-8">
             <div className="px-6 pt-8">

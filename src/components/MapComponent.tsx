@@ -54,6 +54,7 @@ export default function MapComponent(
                             depth: 2,
                             zooms: [4, 9],
                             styles: {
+                                // @typescript-eslint/no-explicit-any
                                 'fill': function (props: any) {
                                     if (props.SOC !== "CHN") {
                                         return "rgb(227,227,227)";
