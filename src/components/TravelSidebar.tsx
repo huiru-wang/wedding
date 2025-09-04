@@ -25,7 +25,7 @@ export default function TravelSidebar({ open, onClose, marker }: TravelSidebarPr
                     className={`absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white dark:bg-gray-900 shadow-xl transition-transform duration-300 pointer-events-auto
                     ${open ? 'translate-x-0' : 'translate-x-full'} hidden sm:block`}
                 >
-                    {marker && <SidebarContent marker={marker} onClose={onClose} />}
+                    {open && marker && <SidebarContent marker={marker} onClose={onClose} />}
                 </div>
 
                 {/* 底部抽屉 */}
@@ -33,7 +33,7 @@ export default function TravelSidebar({ open, onClose, marker }: TravelSidebarPr
                     className={`absolute bottom-0 left-0 right-0 h-[65%] bg-white dark:bg-gray-900 shadow-[0_-8px_24px_rgba(0,0,0,0.2)] transition-transform duration-300 pointer-events-auto
                     ${open ? 'translate-y-0' : 'translate-y-full'} sm:hidden`}
                 >
-                    {marker && <SidebarContent marker={marker} onClose={onClose} />}
+                    {open && marker && <SidebarContent marker={marker} onClose={onClose} />}
                 </div>
             </div>
         </>

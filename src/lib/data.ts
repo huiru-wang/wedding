@@ -62,37 +62,6 @@ export const travelMarkers: TravelMarker[] = [
         ]
     },
     {
-        "title": "镰仓七里滨",
-        "SOC": "JPN",
-        "city": "镰仓市",
-        "depth": 6,
-        "position": [
-            139.510730,
-            35.304857
-        ],
-        "zooms": [
-            3,
-            15
-        ],
-        "iconImg": "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E4%B8%83%E9%87%8C%E6%BB%A8.jpg",
-        "content": [
-            {
-                type: "image",
-                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E9%AB%98%E6%A0%A1%E5%89%8D2.jpg",
-                caption: "镰仓站"
-            },
-            {
-                type: "image",
-                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E4%B8%83%E9%87%8C%E6%BB%A82.jpg",
-            },
-            {
-                type: "image",
-                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E9%AB%98%E6%A0%A1%E5%89%8D4.jpg",
-                caption: "乌冬面 吃不太惯"
-            },
-        ]
-    },
-    {
         "title": "镰仓高校前",
         "SOC": "JPN",
         "city": "镰仓市",
@@ -122,6 +91,10 @@ export const travelMarkers: TravelMarker[] = [
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E9%AB%98%E6%A0%A1%E5%89%8D4.jpg",
                 caption: "乌冬面 吃不太惯"
             },
+            {
+                type: "image",
+                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E9%95%B0%E4%BB%93%E4%B8%83%E9%87%8C%E6%BB%A82.jpg",
+            }
         ]
     },
     {
@@ -243,7 +216,6 @@ export const travelMarkers: TravelMarker[] = [
             {
                 type: "image",
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E6%9D%AD%E5%B7%9E/%E6%9D%AD%E5%B7%9E%E6%A1%90%E5%BA%90%E9%A9%AC%E5%B2%AD%E5%8F%A4%E9%81%931.jpg",
-                caption: "东京涩谷sky的顶楼"
             },
             {
                 type: "image",
