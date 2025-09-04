@@ -114,7 +114,7 @@ export default function MapComponent(
                                 title: title,    // 鼠标滑过点标记时的文字提示
                                 anchor: 'bottom-center',
                                 clickable: true, // 是否可点击
-                                draggable: true, // 是否可拖动
+                                draggable: false, // 是否可拖动
                                 zoomEnable: true,
                                 scrollWheel: false,
                                 label: {          // 文本标注

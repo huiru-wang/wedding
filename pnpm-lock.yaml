@@ -11,6 +11,9 @@ importers:
       '@amap/amap-jsapi-loader':
         specifier: ^1.0.1
         version: 1.0.1
+      lunar-javascript:
+        specifier: ^1.7.3
+        version: 1.7.3
       motion:
         specifier: ^12.23.12
         version: 12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1368,6 +1371,9 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
+
+  lunar-javascript@1.7.3:
+    resolution: {integrity: sha512-p03Nj1D50UIHF66nRszKh9jDGf1nSsGlRFavrbqV6cz9UgOAcjQw7m0NRprjxPV3JsKKwhw4almHhe8BKkNFgg==}
 
   magic-string@0.30.18:
     resolution: {integrity: sha512-yi8swmWbO17qHhwIBNeeZxTceJMeBvWJaId6dyvTSOwTipqeHhMhOrz6513r1sOKnpvQ7zkhlG8tPrpilwTxHQ==}
@@ -3253,6 +3259,8 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
+
+  lunar-javascript@1.7.3: {}
 
   magic-string@0.30.18:
     dependencies:

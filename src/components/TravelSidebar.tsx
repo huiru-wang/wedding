@@ -71,8 +71,15 @@ function ContentBlock({ block }: { block: TravelMarkerContentBlock }) {
     if (block.type === 'image') {
         return (
             <div className="w-full">
-                <div className="relative w-full aspect-video overflow-hidden rounded-md">
-                    <Image src={block.src} alt={block.caption ?? '图片'} fill className="object-cover" sizes="(max-width: 640px) 100vw, 420px" />
+                <div className="relative w-80 mx-auto overflow-hidden rounded-md">
+                    <Image
+                        src={block.src}
+                        alt={block.caption ?? '图片'}
+                        width={320}
+                        height={0}
+                        className="w-full h-auto object-contain"
+                        sizes="320px"
+                    />
                 </div>
                 {block.caption && <div className="mt-1 text-xs text-center opacity-70">{block.caption}</div>}
             </div>
