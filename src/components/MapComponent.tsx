@@ -43,7 +43,7 @@ export default function MapComponent(
         if (typeof window !== 'undefined') {
             import('@amap/amap-jsapi-loader').then(AMapLoader => {
                 AMapLoader.load({
-                    key: 'b21c0d603c52798b7947fe3ddc842e78',
+                    key: process.env.NEXT_PUBLIC_AMAP_KEY || '',
                     version: '2.0',
                 }).then(() => {
                     if (mapRef.current) {
