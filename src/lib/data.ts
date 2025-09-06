@@ -24,7 +24,6 @@ export const travelMarkers: TravelMarker[] = [
             {
                 type: "image",
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%9C%E4%BA%AC/%E4%B8%9C%E4%BA%AC%E6%B6%A9%E8%B0%B7sky2.jpg",
-                caption: "这张有点凶"
             },
             {
                 type: "image",
@@ -113,7 +112,7 @@ export const travelMarkers: TravelMarker[] = [
         "content": [
             {
                 "type": "text",
-                "text": "在华为的日子，峰哥！一恒！好兄弟"
+                "text": "在华为的日子"
             },
             {
                 type: "image",
@@ -207,7 +206,7 @@ export const travelMarkers: TravelMarker[] = [
         "content": [
             {
                 "type": "text",
-                "text": "五一期间的自驾游第一站桐庐马岭古道，一个很安静的村子，有山有水，有茶有酒，有诗有远方"
+                "text": "五一期间的自驾游第一站桐庐马岭古道"
             },
             {
                 type: "image",
@@ -342,7 +341,7 @@ export const travelMarkers: TravelMarker[] = [
         "content": [
             {
                 "type": "text",
-                "text": "五一期间的自驾游第六站宁波象山县墙头镇,也是路过的一个民宿，老板人很好，非常美的民宿，我们自己在这里拍了婚纱照 哈哈哈"
+                "text": "五一期间的自驾游第六站宁波象山县墙头镇,也是路过的一个民宿，非常美的民宿，我们自己在这里拍了婚纱照 哈哈哈"
             },
             {
                 type: "image",
@@ -503,7 +502,7 @@ export const travelMarkers: TravelMarker[] = [
             {
                 type: "image",
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E4%B8%8A%E6%B5%B7/%E4%B8%8A%E6%B5%B7%E5%B8%828.jpg",
-                caption: "格格的博士帽"
+                caption: "格格的博士服"
             },
             {
                 type: "image",
@@ -562,11 +561,7 @@ export const travelMarkers: TravelMarker[] = [
         "content": [
             {
                 "type": "text",
-                "text": "郑州，是我第二个长大的地方，也是在来到这里的第一年遇到媛媛"
-            },
-            {
-                "type": "text",
-                "text": "这张其实是在海南拍的，哈哈"
+                "text": "郑州"
             },
             {
                 type: "image",
@@ -574,7 +569,7 @@ export const travelMarkers: TravelMarker[] = [
             },
             {
                 "type": "text",
-                "text": "下面2张是茶城早期 哈哈，还有我奶奶和妈妈的母亲节"
+                "text": "下面2张是茶城早期，还有我奶奶和妈妈的母亲节"
             },
             {
                 type: "image",
@@ -624,10 +619,6 @@ export const travelMarkers: TravelMarker[] = [
             {
                 "type": "text",
                 "text": "南京，和我的好兄弟们共度3年研究生时光！"
-            },
-            {
-                "type": "text",
-                "text": "还记得这张吗？都忘了这张是谁拍的？？？你们俩的颜值巅峰吗这是 哈哈"
             },
             {
                 type: "image",
@@ -726,20 +717,12 @@ export const travelMarkers: TravelMarker[] = [
         "iconImg": "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E8%A5%BF%E5%AE%89/%E8%A5%BF%E5%AE%891.JPG",
         "content": [
             {
-                "type": "text",
-                "text": "我们四个，真实有年代感的照片，哈哈"
+                type: "image",
+                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E8%A5%BF%E5%AE%89/%E8%A5%BF%E5%AE%892.jpg",
             },
             {
                 type: "image",
                 src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E8%A5%BF%E5%AE%89/%E8%A5%BF%E5%AE%891.JPG",
-            },
-            {
-                "type": "text",
-                "text": "马吉安、苗、刘畅、张迪一起在西安城墙"
-            },
-            {
-                type: "image",
-                src: "https://huiru-wang-images.oss-cn-beijing.aliyuncs.com/travel/%E8%A5%BF%E5%AE%89/%E8%A5%BF%E5%AE%892.jpg",
             },
         ]
     },
