@@ -28,7 +28,7 @@ function NavigationModal({ isOpen, onClose, marker }: NavigationModalProps) {
         let url = '';
         if (type === 'amap') {
             // 高德地图 APP URI - 直接导航
-            url = `https://uri.amap.com/navigation?to=${longitude},${latitude},${encodeURIComponent(title)}&mode=car&callnative=1&src=myapp`;
+            url = `amapuri://route/plan/?did=&dlat=${latitude}&dlon=${longitude}&dname=${encodeURIComponent(title)}`;
         } else if (type === 'baidu') {
             // 百度地图 APP URI
             url = `baidumap://map/direction?destination=${latitude},${longitude}&name=${encodeURIComponent(title)}&mode=driving&src=webapp.baidu.openAPIdemo`;
