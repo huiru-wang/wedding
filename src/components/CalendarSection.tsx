@@ -6,7 +6,7 @@ import { WEDDING_CONFIG } from "@/lib/config";
 
 // 农历日期数组，从10月1号开始对应八月初十
 const lunarDays = [
-    "八月初十", "十一", "十二", "十三", "十四", "中秋",
+    "初十", "十一", "十二", "十三", "十四", "中秋",
     "十六", "寒露", "十八", "十九", "二十", "廿一",
     "廿二", "廿三", "廿四", "廿五", "廿六", "廿七",
     "廿八", "廿九", "九月", "初二", "霜降",
@@ -67,71 +67,89 @@ export default function CalendarSection() {
     const weekdayLabels = ["日", "一", "二", "三", "四", "五", "六"];
 
     return (
-        <section className="h-screen w-full snap-start flex items-center justify-center px-6 bg-background text-foreground">
-            <div className="w-full max-w-2xl">
-                <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6">
-                    {year}年{month}月
-                </h2>
-                <div className="grid grid-cols-7 gap-2 text-center">
-                    {weekdayLabels.map((w) => (
-                        <div key={w} className="text-sm opacity-70 py-2">
-                            周{w}
-                        </div>
-                    ))}
-                    {matrix.map((d, idx) => {
-                        const isTarget = d === day;
-                        const isHolidayDay = isHoliday(d);
-                        const lunarDate = d ? getLunarDate(year, month, d) : '';
+        <section
+            className="h-screen w-full snap-start flex items-center justify-center px-6 bg-background text-foreground relative"
+            style={{
+                backgroundImage: 'url(/calendar-background.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
+            {/* 背景遮罩层，确保文字可读性 */}
 
-                        return (
-                            <div
-                                key={idx}
-                                className={[
-                                    "aspect-square flex flex-col items-center justify-center rounded-md text-sm relative",
-                                    d === null ? "opacity-30" : "",
-                                    isTarget ? "text-white" : // 婚礼当天红色背景
-                                        isHolidayDay ? "bg-red-100 text-red-600 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700" :
-                                            "border border-black/[.08] dark:border-white/[.15]",
-                                ].join(" ")}
-                                style={isTarget ? { backgroundColor: '#A8837B' } : {}}
-                            >
-                                {isTarget ? (
-                                    <WeddingDayImage />
-                                ) : (
-                                    <>
-                                        {d && (
-                                            <>
-                                                <div className="font-medium">{d}</div>
-                                                {lunarDate && (
-                                                    <div className="text-xs opacity-60 mt-0.5">
-                                                        {lunarDate}
-                                                    </div>
-                                                )}
-                                            </>
-                                        )}
-                                    </>
-                                )}
+            <div className="w-full max-w-2xl relative z-10">
+                {/* 统一的日历卡片 */}
+                <div className="bg-white/20 dark:bg-black/20 backdrop-blur-md rounded-2xl p-6 shadow-xl">
+                    {/* 1. 年月标题 */}
+                    <h2 className="text-center text-xl sm:text-2xl font-bold text-gray-900 dark:text-white drop-shadow-xl">
+                        {year}年{month}月（农历八月）
+                    </h2>
+
+                    {/* 2. 日历网格 */}
+                    <div className="grid grid-cols-7 gap-2 text-center mb-4">
+                        {weekdayLabels.map((w) => (
+                            <div key={w} className="text-sm font-medium text-gray-700 dark:text-gray-300 py-2">
+                                周{w}
                             </div>
-                        );
-                    })}
-                </div>
-                <div className="mt-6 text-center text-sm opacity-80">
-                    <div className="flex items-center justify-center gap-4 mb-2">
-                        <div className="flex items-center gap-1">
-                            <div className="w-3 h-3 bg-red-100 border border-red-200 rounded dark:bg-red-900/30 dark:border-red-700"></div>
-                            <span>国庆假期</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <div className="w-3 h-3 rounded relative overflow-hidden">
-                                <Image
-                                    src={WEDDING_CONFIG.weddingDayImage}
-                                    alt="婚礼日"
-                                    width={12}
-                                    height={12}
-                                    className="object-cover"
-                                />
+                        ))}
+                        {matrix.map((d, idx) => {
+                            const isTarget = d === day;
+                            const isHolidayDay = isHoliday(d);
+                            const lunarDate = d ? getLunarDate(year, month, d) : '';
+
+                            return (
+                                <div
+                                    key={idx}
+                                    className={[
+                                        "aspect-square flex flex-col items-center justify-center rounded-md text-sm relative",
+                                        d === null ? "opacity-30" : "",
+                                        isTarget ? "text-white" : // 婚礼当天红色背景
+                                            isHolidayDay ? "bg-red-100 text-red-600 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700" :
+                                                "border border-black/[.08] dark:border-white/[.15]",
+                                    ].join(" ")}
+                                    style={isTarget ? { backgroundColor: '#A8837B' } : {}}
+                                >
+                                    {isTarget ? (
+                                        <WeddingDayImage />
+                                    ) : (
+                                        <>
+                                            {d && (
+                                                <>
+                                                    <div className="font-medium">{d}</div>
+                                                    {lunarDate && (
+                                                        <div className="text-xs opacity-60 mt-0.5">
+                                                            {lunarDate}
+                                                        </div>
+                                                    )}
+                                                </>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* 3. 图例 */}
+                    <div className="text-center text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <div className="flex items-center justify-center gap-4">
+                            <div className="flex items-center gap-1">
+                                <div className="w-3 h-3 bg-red-100 border border-red-200 rounded dark:bg-red-900/30 dark:border-red-700"></div>
+                                <span>国庆假期</span>
                             </div>
-                            <span>婚礼日</span>
+                            <div className="flex items-center gap-1">
+                                <div className="w-3 h-3 rounded relative overflow-hidden">
+                                    <Image
+                                        src={WEDDING_CONFIG.weddingDayImage}
+                                        alt="婚礼日"
+                                        width={12}
+                                        height={12}
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <span>婚礼日</span>
+                            </div>
                         </div>
                     </div>
                 </div>

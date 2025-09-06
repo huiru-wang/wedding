@@ -283,15 +283,15 @@ export default function WeddingMapComponent() {
                                     <div className="space-y-2 text-xs">
                                         <div className="flex items-center space-x-2">
                                             <span className="text-pink-500">🌸</span>
-                                            <span>水杉林婚礼仪式 <span className="text-xs text-gray-500">(11:30)</span></span>
+                                            <span>水杉林婚礼 <span className="text-xs text-gray-500"> 🕰 ️ 11:30</span></span>
                                         </div>
-                                        <div className="flex items-center space-x-12">
+                                        <div className="flex items-center space-x-8">
                                             <span className="text-pink-500 w-4"></span>
                                             <span className="text-gray-400 text-sm">↓</span>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <span className="text-orange-500">🍽️</span>
-                                            <span>10号宴会厅用餐 <span className="text-xs text-gray-500">(12:30)</span></span>
+                                            <span>10号宴会厅 <span className="text-xs text-gray-500">🕰 ️ 12:30</span></span>
                                         </div>
                                     </div>
                                 </div>

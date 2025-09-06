@@ -3,6 +3,7 @@ import CalendarSection from "@/components/CalendarSection";
 import { travelMarkers } from "@/lib/data";
 import { TravelContainer } from "@/components/TravelContainer";
 import WeddingMapComponent from "@/components/WeddingMapComponent";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <CalendarSection />
       <WeddingMapComponent />
       <TravelContainer travelMarkers={travelMarkers} />
+      <BackgroundMusic />
     </div>
   );
 }
