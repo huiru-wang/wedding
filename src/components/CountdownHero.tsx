@@ -58,7 +58,7 @@ export default function CountdownHero() {
             <div className="absolute inset-0 bg-black/30 z-10" />
 
             {/* 内容 - 调整位置往上移动 */}
-            <div className="relative z-20 h-full w-full flex flex-col items-center justify-start text-center text-white px-6 pt-20 sm:pt-24 md:pt-32">
+            <div className="relative z-20 h-full w-full flex flex-col items-center justify-start text-center text-white px-6 pt-30 sm:pt-24 md:pt-32">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-wide">
                     {WEDDING_CONFIG.groomName} &️ {WEDDING_CONFIG.brideName}
                 </div>

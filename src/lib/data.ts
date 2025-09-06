@@ -667,7 +667,7 @@ export const travelMarkers: TravelMarker[] = [
         ]
     },
     {
-        "title": "长春市",
+        "title": "长春理工大学",
         "SOC": "CHN",
         "city": "长春市",
         "depth": 7,

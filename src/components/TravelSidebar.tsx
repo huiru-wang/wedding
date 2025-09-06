@@ -10,30 +10,33 @@ interface TravelSidebarProps {
 
 export default function TravelSidebar({ open, onClose, marker }: TravelSidebarProps) {
 
+    // 如果sidebar没有打开，不渲染任何内容
+    if (!open) {
+        return null;
+    }
+
     return (
         <>
-            {/* 遮罩层 */}
-            {/* <div
-                className={`fixed inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            {/* 遮罩层 - 只在sidebar打开时渲染 */}
+            <div
+                className="fixed inset-0 bg-black/40 transition-opacity z-40 pointer-events-auto"
                 onClick={onClose}
-            /> */}
+            />
 
             {/* 宽屏：右侧抽屉；窄屏：底部抽屉 */}
-            <div className="fixed inset-0 pointer-events-none">
+            <div className="fixed inset-0 pointer-events-none z-50">
                 {/* 右侧抽屉 */}
                 <div
-                    className={`absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white dark:bg-gray-900 shadow-xl transition-transform duration-300 pointer-events-auto
-                    ${open ? 'translate-x-0' : 'translate-x-full'} hidden sm:block`}
+                    className="absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white dark:bg-gray-900 shadow-xl transition-transform duration-300 pointer-events-auto translate-x-0 hidden sm:block"
                 >
-                    {open && marker && <SidebarContent marker={marker} onClose={onClose} />}
+                    {marker && <SidebarContent marker={marker} onClose={onClose} />}
                 </div>
 
                 {/* 底部抽屉 */}
                 <div
-                    className={`absolute bottom-0 left-0 right-0 h-[65%] bg-white dark:bg-gray-900 shadow-[0_-8px_24px_rgba(0,0,0,0.2)] transition-transform duration-300 pointer-events-auto
-                    ${open ? 'translate-y-0' : 'translate-y-full'} sm:hidden`}
+                    className="absolute bottom-0 left-0 right-0 h-[65%] bg-white dark:bg-gray-900 shadow-[0_-8px_24px_rgba(0,0,0,0.2)] transition-transform duration-300 pointer-events-auto translate-y-0 sm:hidden"
                 >
-                    {open && marker && <SidebarContent marker={marker} onClose={onClose} />}
+                    {marker && <SidebarContent marker={marker} onClose={onClose} />}
                 </div>
             </div>
         </>

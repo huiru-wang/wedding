@@ -10,11 +10,14 @@ export function TravelContainer({ travelMarkers }: { travelMarkers: TravelMarker
     const [selectedMarker, setSelectedMarker] = useState<TravelMarker | null>(null);
 
     return (
-        <section className="h-screen w-full snap-start flex flex-col bg-background text-foreground pt-8">
-            <div className="px-6 pt-8">
+        <section className="h-screen w-full snap-start flex flex-col bg-background text-foreground">
+            <div className="px-6 pt-8 pb-4">
                 <h2 className="text-2xl sm:text-3xl font-semibold text-center">旅行足迹</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
+                    💫 点击地图上的标记点，探索美好回忆
+                </p>
             </div>
-            <div className="relative flex-1 px-4 sm:px-32 pt-4 pb-32">
+            <div className="relative px-4 sm:px-32 pb-4" style={{ height: '80%' }}>
                 <div className="h-full w-full rounded-xl overflow-hidden shadow-lg">
                     {/* 地图实例 */}
                     <MapComponent travelMarkers={travelMarkers} setShowSidebar={setShowSidebar} setSelectedMarker={setSelectedMarker as any} />

@@ -67,7 +67,7 @@ export default function CalendarSection() {
     const weekdayLabels = ["日", "一", "二", "三", "四", "五", "六"];
 
     return (
-        <section className="min-h-screen h-screen w-full snap-start flex items-center justify-center px-6 py-10 bg-background text-foreground">
+        <section className="h-screen w-full snap-start flex items-center justify-center px-6 bg-background text-foreground">
             <div className="w-full max-w-2xl">
                 <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6">
                     {year}年{month}月
@@ -89,10 +89,11 @@ export default function CalendarSection() {
                                 className={[
                                     "aspect-square flex flex-col items-center justify-center rounded-md text-sm relative",
                                     d === null ? "opacity-30" : "",
-                                    isTarget ? "" : // 婚礼当天不添加边框
+                                    isTarget ? "text-white" : // 婚礼当天红色背景
                                         isHolidayDay ? "bg-red-100 text-red-600 border border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700" :
                                             "border border-black/[.08] dark:border-white/[.15]",
                                 ].join(" ")}
+                                style={isTarget ? { backgroundColor: '#A8837B' } : {}}
                             >
                                 {isTarget ? (
                                     <WeddingDayImage />

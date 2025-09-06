@@ -6,7 +6,7 @@ import WeddingMapComponent from "@/components/WeddingMapComponent";
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen w-full overflow-x-hidden snap-y snap-mandatory">
+    <div className="font-sans min-h-screen w-full overflow-x-hidden snap-y snap-mandatory scroll-smooth">
       <CountdownHero />
       <CalendarSection />
       <WeddingMapComponent />

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface MapMarker {
@@ -110,6 +110,8 @@ function NavigationModal({ isOpen, onClose, marker }: NavigationModalProps) {
 export default function WeddingMapComponent() {
     const [selectedMarker, setSelectedMarker] = useState<MapMarker | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const imageRef = useRef<HTMLDivElement>(null);
+    const [markerPositions, setMarkerPositions] = useState<{ [key: string]: { left: number; top: number } }>({});
 
     // 地图标记点数据 - 你可以根据实际图片调整位置和坐标
     const markers: MapMarker[] = [
@@ -151,6 +153,40 @@ export default function WeddingMapComponent() {
         }
     ];
 
+    // 计算标记点位置
+    useEffect(() => {
+        const calculateMarkerPositions = () => {
+            if (!imageRef.current) return;
+
+            const container = imageRef.current;
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width;
+            const containerHeight = containerRect.height;
+
+            const newPositions: { [key: string]: { left: number; top: number } } = {};
+
+            markers.forEach(marker => {
+                // 计算相对于容器的实际像素位置
+                const left = (marker.x / 100) * containerWidth;
+                const top = (marker.y / 100) * containerHeight;
+
+                newPositions[marker.id] = { left, top };
+            });
+
+            setMarkerPositions(newPositions);
+        };
+
+        // 初始计算
+        calculateMarkerPositions();
+
+        // 监听窗口大小变化
+        window.addEventListener('resize', calculateMarkerPositions);
+
+        return () => {
+            window.removeEventListener('resize', calculateMarkerPositions);
+        };
+    }, []);
+
     const handleMarkerClick = (marker: MapMarker) => {
         setSelectedMarker(marker);
         setIsModalOpen(true);
@@ -162,100 +198,101 @@ export default function WeddingMapComponent() {
     };
 
     return (
-        <div className="relative w-full max-w-4xl mx-auto">
-            {/* 地图标题 */}
-            <div className="text-center mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">💒 婚礼场地导航指南</h2>
-                <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-3">点击地图上的📍标记即可进行导航</p>
-                <div className="flex justify-center items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-                    <div className="flex gap-2">
-                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">高德地图</span>
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded text-xs">苹果地图</span>
-                        <span className="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded text-xs">百度地图</span>
-                    </div>
+        <section className="h-screen w-full snap-start flex items-center justify-center px-4 py-4 bg-gradient-to-br from-green-50/80 via-emerald-50/80 to-green-100/80 dark:from-green-900/20 dark:via-emerald-900/20 dark:to-green-800/20">
+            <div className="relative w-full max-w-4xl mx-auto bg-white/90 dark:bg-gray-800/90 rounded-2xl p-6 backdrop-blur-sm shadow-2xl">
+                {/* 地图标题 */}
+                <div className="text-center mb-6">
+                    <h2 className="text-xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">💒 婚礼场地导航指南</h2>
+                    <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-3">点击地图上的📍进行导航</p>
                 </div>
-            </div>
 
-            {/* 地图图片 */}
-            <div className="relative">
-                <Image
-                    src="/wedding-map.jpg"
-                    alt="婚礼地图"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto rounded-xl shadow-2xl border-4 border-white dark:border-gray-700"
-                />
+                {/* 地图图片 */}
+                <div className="relative" ref={imageRef}>
+                    <Image
+                        src="/wedding-map.jpg"
+                        alt="婚礼地图"
+                        width={800}
+                        height={600}
+                        className="w-full h-auto rounded-xl shadow-2xl border-4 border-white dark:border-gray-700"
+                        style={{ aspectRatio: '4/3' }}
+                    />
 
-                {/* 标记点 */}
-                {markers.map((marker) => (
-                    <button
-                        key={marker.id}
-                        onClick={() => handleMarkerClick(marker)}
-                        className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
-                        style={{
-                            left: `${marker.x}%`,
-                            top: `${marker.y}%`
-                        }}
-                    >
-                        {/* 标记图标 */}
-                        <div className="w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform">
-                            <span className="text-2xl">📍</span>
+                    {/* 标记点 */}
+                    {markers.map((marker) => {
+                        const position = markerPositions[marker.id];
+                        if (!position) return null;
+
+                        return (
+                            <button
+                                key={marker.id}
+                                onClick={() => handleMarkerClick(marker)}
+                                className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+                                style={{
+                                    left: `${position.left}px`,
+                                    top: `${position.top}px`
+                                }}
+                            >
+                                {/* 标记图标 */}
+                                <div className="w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform">
+                                    <span className="text-2xl">📍</span>
+                                </div>
+
+                                {/* 悬停提示 */}
+                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    {marker.title}
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
+
+                {/* 地图描述信息 */}
+                <div className="mt-6 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 border border-pink-200 dark:border-gray-600">
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {/* 标记点说明 */}
+                        <div>
+                            <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
+                                <span className="text-base mr-2">📍</span>
+                                重要位置标记（点击即可导航）
+                            </h4>
+                            <ul className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                                {markers.map((marker) => (
+                                    <li key={marker.id} className="flex items-center">
+                                        <span
+                                            className='w-2 h-2 rounded-full mr-3 bg-blue-500'
+                                        ></span>
+                                        <button
+                                            onClick={() => handleMarkerClick(marker)}
+                                            className="text-left hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+                                        >
+                                            <strong>{marker.title}</strong> - {marker.description}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
-                        {/* 悬停提示 */}
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            {marker.title}
-                        </div>
-                    </button>
-                ))}
-            </div>
-
-            {/* 地图描述信息 */}
-            <div className="mt-6 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 border border-pink-200 dark:border-gray-600">
-                <div className="grid md:grid-cols-2 gap-6">
-                    {/* 标记点说明 */}
-                    <div>
-                        <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
-                            <span className="text-base mr-2">📍</span>
-                            重要位置标记（点击即可导航）
-                        </h4>
-                        <ul className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
-                            {markers.map((marker) => (
-                                <li key={marker.id} className="flex items-center">
-                                    <span
-                                        className='w-2 h-2 rounded-full mr-3 bg-blue-500'
-                                    ></span>
-                                    <button
-                                        onClick={() => handleMarkerClick(marker)}
-                                        className="text-left hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
-                                    >
-                                        <strong>{marker.title}</strong> - {marker.description}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* 导航和流程说明 */}
-                    <div>
-                        <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
-                            <span className="text-base mr-2">🚗</span>
-                            婚礼流程
-                        </h4>
-                        <div className="space-y-3 text-xs text-gray-600 dark:text-gray-300">
-                            <div>
-                                <div className="space-y-2 text-xs">
-                                    <div className="flex items-center space-x-2">
-                                        <span className="text-pink-500">🌸</span>
-                                        <span>水杉林婚礼仪式 <span className="text-xs text-gray-500">(11:30)</span></span>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <span className="text-pink-500 w-4"></span>
-                                        <span className="text-gray-400 text-sm">↓</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <span className="text-orange-500">🍽️</span>
-                                        <span>10号宴会厅用餐 <span className="text-xs text-gray-500">(12:30)</span></span>
+                        {/* 导航和流程说明 */}
+                        <div>
+                            <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-3 flex items-center">
+                                <span className="text-base mr-2">🚗</span>
+                                婚礼流程
+                            </h4>
+                            <div className="space-y-3 text-xs text-gray-600 dark:text-gray-300">
+                                <div>
+                                    <div className="space-y-2 text-xs">
+                                        <div className="flex items-center space-x-2">
+                                            <span className="text-pink-500">🌸</span>
+                                            <span>水杉林婚礼仪式 <span className="text-xs text-gray-500">(11:30)</span></span>
+                                        </div>
+                                        <div className="flex items-center space-x-12">
+                                            <span className="text-pink-500 w-4"></span>
+                                            <span className="text-gray-400 text-sm">↓</span>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <span className="text-orange-500">🍽️</span>
+                                            <span>10号宴会厅用餐 <span className="text-xs text-gray-500">(12:30)</span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -263,19 +300,13 @@ export default function WeddingMapComponent() {
                     </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-pink-200 dark:border-gray-600">
-                    <p className="text-center text-xs text-gray-500 dark:text-gray-400">
-                        💝 感谢您的到来，让我们一起见证这美好的时刻！
-                    </p>
-                </div>
+                {/* 导航选择弹窗 */}
+                <NavigationModal
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                    marker={selectedMarker}
+                />
             </div>
-
-            {/* 导航选择弹窗 */}
-            <NavigationModal
-                isOpen={isModalOpen}
-                onClose={handleCloseModal}
-                marker={selectedMarker}
-            />
-        </div>
+        </section>
     );
 } 
